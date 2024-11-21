@@ -282,65 +282,51 @@ function formatDate($date)
 
 								<p><a href="article.php?id=<?= $items[$i]['id'] ?>" class="read-more ver">Continue Reading</a></p>
 
-								<div class="ms-5 ps-5 mt-4">
-									<button type="button" class="btn btn-danger px-3 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-										Laporkan Keluhan
-									</button>
-								</div>
-
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Formulir Pengaduan</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
-												<form>
-													<!-- Input Nama Pelapor -->
-													<div class="mb-3">
-														<label for="nama_pelapor" class="form-label">Nama Pelapor</label>
-														<input type="text" class="form-control" id="nama_pelapor" required>
-													</div>
-
-													<!-- Input Kontak -->
-													<div class="mb-3">
-														<label for="kontak" class="form-label">Kontak</label>
-														<input type="text" class="form-control" id="kontak" required>
-													</div>
-
-													<!-- Input Judul Pengaduan -->
-													<div class="mb-3">
-														<label for="judul_pengaduan" class="form-label">Judul Pengaduan</label>
-														<input type="text" class="form-control" id="judul_pengaduan" required>
-													</div>
-
-													<!-- Input Deskripsi -->
-													<div class="mb-3">
-														<label for="deskripsi" class="form-label">Deskripsi Pengaduan</label>
-														<textarea class="form-control" id="deskripsi" rows="4" required></textarea>
-													</div>
-
-													<!-- Input Tanggal -->
-													<div class="mb-3">
-														<label for="tanggal" class="form-label">Tanggal</label>
-														<input type="date" class="form-control" id="tanggal" required>
-													</div>
-												</form>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-												<button type="submit" class="btn btn-primary">Kirim Pengaduan</button>
-											</div>
-										</div>
-									</div>
-								</div>
+								<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pengaduanModal">
+  Tambah Pengaduan
+</button>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="pengaduanModal" tabindex="-1" aria-labelledby="pengaduanModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pengaduanModalLabel">Form Pengaduan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="proses_pengaduan.php" method="POST">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nama_pelapor" class="form-label">Nama Pelapor</label>
+            <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" required>
+          </div>
+          <div class="mb-3">
+            <label for="kontak" class="form-label">Kontak</label>
+            <input type="text" class="form-control" id="kontak" name="kontak" required>
+          </div>
+          <div class="mb-3">
+            <label for="judul_pengaduan" class="form-label">Judul Pengaduan</label>
+            <input type="text" class="form-control" id="judul_pengaduan" name="judul_pengaduan" required>
+          </div>
+          <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
-
-							</div>
-						</div>
+							
+						
 					</div>
 
 				<?php endfor; ?>
@@ -403,7 +389,7 @@ function formatDate($date)
 										<div class="text">
 											<h4><?= blogItems()[0]['title'] ?></h4>
 											<div class="post-meta">
-												<span class="mr-2"><?= formatDate(blogItems()[8]['tanggal']) ?> </span>
+												<span class="mr-2"><?= formatDate(blogItems()[0]['tanggal']) ?> </span>
 											</div>
 										</div>
 									</a>

@@ -3,9 +3,7 @@
 
 <?php
 
-
-function getCountPengguna()
-{
+function getCountPengguna() {
   global $koneksi;
   $sql = "SELECT * FROM user";
   $query = mysqli_query($koneksi, $sql);
@@ -13,10 +11,18 @@ function getCountPengguna()
   return $count;
 }
 
-function getCountBlog()
-{
+function getCountBlog() {
   global $koneksi;
   $sql = "SELECT * FROM blog WHERE user_id = " . $_SESSION['user']['id'];
+  $query = mysqli_query($koneksi, $sql);
+  $count = mysqli_num_rows($query);
+  return $count;
+}
+
+// Fungsi untuk menghitung jumlah pengaduan
+function getCountPengaduan() {
+  global $koneksi;
+  $sql = "SELECT * FROM pengaduan"; // Sesuaikan dengan nama tabel
   $query = mysqli_query($koneksi, $sql);
   $count = mysqli_num_rows($query);
   return $count;
@@ -46,7 +52,7 @@ function getCountBlog()
     <div class="container-fluid">
       <div class="row">
         <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="card card-success card-outline">
               <div class="card-body p-0">
                 <div class="row">
@@ -65,7 +71,7 @@ function getCountBlog()
             </div>
           </div>
         <?php endif; ?>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
           <div class="card card-primary card-outline">
             <div class="card-body p-0">
               <div class="row">
@@ -78,6 +84,26 @@ function getCountBlog()
                   <h3>Postingan</h3>
                   <h2><?= getCountBlog(); ?></h2>
                   <a href="postingan.php" class="btn btn-outline-primary col-lg-10">Lihat</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pengaduan Section -->
+        <div class="col-lg-4">
+          <div class="card card-warning card-outline">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-lg-3 text-center p-0" style="font-size: 3.3em;">
+                  <div class="badge badge-warning rounded">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-lg-9 text-center text-uppercase py-2 px-2">
+                  <h3>Pengaduan</h3>
+                  <h2><?= getCountPengaduan(); ?></h2>
+                  <a href="pengaduan.php" class="btn btn-outline-warning col-lg-10">Lihat</a>
                 </div>
               </div>
             </div>

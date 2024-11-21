@@ -31,6 +31,12 @@
                         <p>Postingan Saya</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="pengaduan.php" class="nav-link <?= ($title === "Pengaduan" ? "active" : "") ?>">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pengaduan</p>
+                    </a>
+                </li>
             </ul>
         </li>
 
